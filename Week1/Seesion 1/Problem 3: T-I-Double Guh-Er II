@@ -1,0 +1,11 @@
+#def tiggerfy(word):
+#Understand the problem::
+#The word Trigger, we have to remove removes any substrings t, i, gg, and er from word. 
+#case sensitive
+
+#plan
+#make a new string to store the result
+#go through the string
+#check if the substrings are available
+#if they are not present in the string append then into the new string
+#return new string
