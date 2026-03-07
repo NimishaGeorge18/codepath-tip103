@@ -1,0 +1,30 @@
+from collections import Counter
+
+def is_authentic_collection(art_pieces):
+    if len(art_pieces) == 0:
+        return False
+
+    n = max(art_pieces)
+
+    if len(art_pieces) != n + 1:
+        return False
+
+    counts = Counter(art_pieces)
+
+    for i in range(1, n):
+        if counts[i] != 1:
+            return False
+
+    if counts[n] != 2:
+        return False
+
+    return True
+
+
+collection1 = [2, 1, 3]
+collection2 = [1, 3, 3, 2]
+collection3 = [1, 1]
+
+print(is_authentic_collection(collection1))  # False
+print(is_authentic_collection(collection2))  # True
+print(is_authentic_collection(collection3))  # True
