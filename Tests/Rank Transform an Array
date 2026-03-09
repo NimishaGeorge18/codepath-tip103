@@ -1,0 +1,26 @@
+#Given an array of integers arr, replace each element with its rank.
+#The rank represents how large the element is. The rank has the following rules:
+#-Rank is an integer starting from 1
+#-The larger the element, the larger the rank. If two elements are equal, their rank must be the same.
+#-Rank should be as small as possible.
+
+def array_rank_transform(arr):
+    sorted_unique = sorted(set(arr))
+    
+    rank = {}
+    for i in range(len(sorted_unique)):
+        rank[sorted_unique[i]] = i + 1
+
+    result = []
+    for num in arr:
+        result.append(rank[num])
+
+    return result   
+
+
+arr1 = [40, 10, 20, 30]
+arr2 = [100, 100, 100]
+arr3 = [37, 12, 28, 9, 100, 56, 80, 5, 12]
+print(array_rank_transform(arr1))
+print(array_rank_transform(arr2))
+print(array_rank_transform(arr3))
