@@ -1,0 +1,25 @@
+
+def valid_mtn_arr(arr):
+    if len(arr) < 3:
+        return False
+    
+    i = 0
+    
+    # walk up
+    while i < len(arr) - 1 and arr[i] < arr[i + 1]:
+        i += 1
+    
+    # peak can't be first or last
+    if i == 0 or i == len(arr) - 1:
+        return False
+    
+    # walk down
+    while i < len(arr) - 1 and arr[i] > arr[i + 1]:
+        i += 1
+    
+    return i == len(arr) - 1
+
+
+# test
+a1 = [1, 2, 3, 4]
+print(valid_mtn_arr(a1))  # False
