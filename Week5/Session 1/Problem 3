@@ -1,0 +1,26 @@
+class Villager:
+    def __init__(self, name, species, personality, catchphrase):
+        self.name = name
+        self.species = species
+        self.personality = personality
+        self.catchphrase = catchphrase
+        self.furniture = []
+    # ... methods from previous problems
+    def add_items(self, item_name):
+        valid_items = ["acoustic guitar", "ironwood kitchenette", "rattan armchair", "kotatsu", "cacao tree"]
+        if item_name in valid_items:
+            self.furniture.append(item_name)
+	
+def of_personality_type(townies, personality_type):
+    personality_list = []
+    for villager in townies:
+        if villager.personality == personality_type:
+            personality_list.append(villager.name)
+    return personality_list
+
+isabelle = Villager("Isabelle", "Dog", "Normal", "what's up?")
+bob = Villager("Bob", "Cat", "Lazy", "pthhhpth")
+stitches = Villager("Stitches", "Cub", "Lazy", "stuffin'")
+
+print(of_personality_type([isabelle, bob, stitches], "Lazy"))
+print(of_personality_type([isabelle, bob, stitches], "Cranky"))
