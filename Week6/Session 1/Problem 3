@@ -1,0 +1,59 @@
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+# For testing
+def print_linked_list(head):
+    if not head:
+        print("Empty List")
+        return
+    current = head
+    while current:
+        print(current.value, end=" -> " if current.next else "\n")
+        current = current.next
+
+def split_protein_chain(protein, k):
+
+    # Step 1: find length
+    length = 0
+    current = protein
+    while current:
+        length += 1
+        current = current.next
+
+    # Step 2: determine sizes
+    part_size = length // k
+    extra = length % k
+
+    result = []
+    current = protein
+
+    # Step 3: split into k parts
+    for i in range(k):
+        head = current
+        size = part_size + (1 if i < extra else 0)
+
+        for j in range(size - 1):
+            if current:
+                current = current.next
+
+        if current:
+            next_part = current.next
+            current.next = None
+            current = next_part
+
+        result.append(head)
+
+    return result
+
+protein1 = Node('Ala', Node('Gly', Node('Leu', Node('Val', Node('Pro', Node('Ser', Node('Thr', Node('Cys'))))))))
+protein2 = Node('Ala', Node('Gly', Node('Leu', Node('Val'))))
+
+parts = split_protein_chain(protein1, 3)
+for part in parts:
+    print_linked_list(part)
+
+parts = split_protein_chain(protein2, 5)
+for part in parts:
+    print_linked_list(part)
