@@ -1,0 +1,54 @@
+# def count_layers(sandwich):
+#     count = 0
+#     for item in sandwich:
+#         #if isinstance(item, list):
+#         if type(item) == list:
+#             count += count_layers(item)
+#         else:
+#             count += 1
+#     return count
+'''
+without recursion we can do this using stack
+
+def count_layers(sandwich):
+    count = 0
+    stack = [sandwich]
+
+    while stack:
+        current = stack.pop()
+
+        for item in current:
+            if type(item) == list:
+                stack.append(item)
+            else:
+                count += 1
+
+    return count
+'''
+# def count_layers(sandwich):
+#     if not isinstance(sandwich, list):
+#         return 0
+
+#     depth = 1  # current level
+
+#     for item in sandwich:
+#         if isinstance(item, list):
+#             depth = max(depth, 1 + count_layers(item))
+
+#     return depth
+
+def count_layers(sandwich):
+    if not isinstance(sandwich, list):
+        return 0
+    if len(sandwich)==1:
+        return 1 + count_layers(sandwich[0])
+    return 1 + sum(count_layers(item) for item in sandwich)
+
+
+
+sandwich1 = ["bread", "bread", ["lettuce", ["tomato", ["bread"]]]]
+sandwich2 = ["bread", ["cheese", ["ham", ["mustard", ["bread"]]]]]
+sandwich3 = []
+print(count_layers(sandwich1))
+print(count_layers(sandwich2))
+print(count_layers(sandwich3))

@@ -1,0 +1,25 @@
+def reverse_orders(orders):
+    # list_orders = orders.split(" ")
+    # reversed_list = list_orders[::-1]
+    # result = " ".join(reversed_list)
+    # return result
+
+    if " " not in orders:
+        return orders
+    first_word, rest = orders.split(" ", 1)
+    return reverse_orders(rest) + " "+ first_word
+
+print(reverse_orders("Bagel Sandwich Coffee"))
+"""
+def reverse_orders(orders):
+    words = orders.split()
+    print (words)
+    if len(words)<= 1:
+        return orders
+
+    return (" ".join(words[1:]))reverse_orders + " " + words[0]
+
+print(reverse_orders("Bagel Sandwich Coffee"))
+
+#Coffee Sandwich Bagel
+# """

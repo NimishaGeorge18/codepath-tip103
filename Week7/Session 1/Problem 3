@@ -1,0 +1,62 @@
+def can_split_coffee(coffee, n):
+    total = sum(coffee)
+    if total % n != 0:
+        return False
+
+    target = total // n
+    used = set()
+
+    def dfs(groups_left, current_sum, start):
+        if groups_left == 0:
+            return True
+
+        if current_sum == target:
+            return dfs(groups_left - 1, 0, 0)
+
+        for i in range(start, len(coffee)):
+            if i not in used and current_sum + coffee[i] <= target:
+                used.add(i)
+
+                if dfs(groups_left, current_sum + coffee[i], i + 1):
+                    return True
+
+                used.remove(i)
+
+        return False
+
+    return dfs(n, 0, 0)
+'''
+def can_split_coffee(coffee, n):
+    total = sum(coffee)
+
+    if total % n != 0:
+        return False
+
+    target = total // n
+    used = [False] * len(coffee)
+
+    def backtrack(start, groups_left, current_sum):
+        if groups_left == 1:
+            return True
+
+        if current_sum == target:
+            return backtrack(0, groups_left - 1, 0)
+
+        for i in range(start, len(coffee)):
+            if not used[i] and current_sum + coffee[i] <= target:
+                used[i] = True
+
+                if backtrack(i + 1, groups_left, current_sum + coffee[i]):
+                    return True
+
+                used[i] = False
+
+        return False
+
+    return backtrack(0, n, 0)
+
+'''
+
+print(can_split_coffee([4, 4, 8], 2))
+print(can_split_coffee([5, 10, 15], 4))
+
