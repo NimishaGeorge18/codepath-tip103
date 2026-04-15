@@ -1,0 +1,189 @@
+class TreeNode:
+    def __init__(self, value, left=None, right=None):
+        self.val = value
+        self.left = left
+        self.right = right
+
+
+def right_vine(root):
+
+    # a = []
+    # a.append(root.val)
+
+    # curr = root
+
+    # while curr.right:
+    #     curr = curr.right
+    #     a.append(curr.val)
+
+    # return a
+    if root.right is None:
+        return [root.val]
+    return [root.val] + right_vine(root.right)
+    
+
+    
+  
+"""
+        Root
+      /      \
+    Node1    Node2
+  /         /    \
+Leaf1    Leaf2  Leaf3
+"""
+# ivy1 = TreeNode("Root", 
+#                 TreeNode("Node1", TreeNode("Leaf1")),
+#                 TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")))
+
+# """
+#       Root
+#       /  
+#     Node1
+#     /
+#   Leaf1  
+# """
+# ivy2 = TreeNode("Root", TreeNode("Node1", TreeNode("Leaf1")))
+
+# print(right_vine(ivy1))
+# print(right_vine(ivy2))
+
+
+
+
+def survey_tree(root):
+
+    if not root:
+        return []
+    else:
+        return survey_tree(root.left)+survey_tree(root.right) + [root.val]
+
+    
+
+# """
+#         Root
+#       /      \
+#     Node1    Node2
+#   /         /    \
+# Leaf1    Leaf2  Leaf3
+# """
+
+# magnolia = TreeNode("Root", 
+#                 TreeNode("Node1", TreeNode("Leaf1")),
+#                         TreeNode("Node2", TreeNode("Leaf2"), TreeNode("Leaf3")))
+
+# print(survey_tree(magnolia))
+
+
+# def sum_inventory(inventory):
+#     if not inventory:
+#         return 0
+#     else:
+#         return sum_inventory(inventory.left) + sum_inventory(inventory.right) +inventory.val
+
+# inventory = TreeNode(40, 
+#                     TreeNode(5, TreeNode(20)),
+#                             TreeNode(10, TreeNode(1), TreeNode(30)))
+
+# print(sum_inventory(inventory))
+
+
+
+# def calculate_yield(root):
+
+#     if not root.left and not root.right:
+#         return root.val
+
+#     if root.val == '+':
+#         return calculate_yield(root.left) + calculate_yield(root.right)
+#     if root.val == '-':
+#         return calculate_yield(root.left) - calculate_yield(root.right)
+#     if root.val == '*':
+#         return calculate_yield(root.left) * calculate_yield(root.right)
+#     if root.val == '/':
+#         return calculate_yield(root.left) / calculate_yield(root.right)
+    
+
+
+
+  
+
+
+# """
+#       +
+#      / \ 
+#     /   \
+#    -     *
+#   / \   / \
+#  4   2 10  2
+# """
+
+# root = TreeNode("+")
+# root.left = TreeNode("-")
+# root.right = TreeNode("*")
+# root.left.left = TreeNode(4)
+# root.left.right = TreeNode(2)
+# root.right.left = TreeNode(10)
+# root.right.right = TreeNode(2)
+
+# print(calculate_yield(root))
+
+
+
+def get_most_specific(taxonomy):
+
+    if not taxonomy.left and not taxonomy.right:
+        return [taxonomy.val]
+
+    
+    return get_most_specific(taxonomy.left) + get_most_specific(taxonomy.right)
+    
+
+"""
+           Plantae
+          /       \
+         /         \
+        /           \ 
+Non-flowering     Flowering
+   /      \       /        \
+Mosses   Ferns Gymnosperms Angiosperms
+                             /     \
+                        Monocots  Dicots
+"""
+plant_taxonomy = TreeNode("Plantae", 
+                          TreeNode("Non-flowering", TreeNode("Mosses"), TreeNode("Ferns")),
+                                  TreeNode("Flowering", TreeNode("Gymnosperms"), 
+                                          TreeNode("Angiosperms", TreeNode("Monocots"), TreeNode("Dicots"))))
+
+print(get_most_specific(plant_taxonomy))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
